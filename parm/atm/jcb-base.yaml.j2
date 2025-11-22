@@ -129,6 +129,7 @@ driver_save_posterior_ensemble_increments: true
 
 # Using LETKF app? (used in obs YAMLs)
 atm_letkf_app: {{ letkf_app | default(false) }}
+atm_letkf_app_use_gsi_ncdiag: {{ letkf_app_use_gsi_ncdiag | default(false) }}
 
 # Distribution type
 distribution_type: Halo
