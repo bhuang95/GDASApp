@@ -6,10 +6,10 @@
 #include "fv3jedi/ObsLocalization/instantiateObsLocFactory.h"
 #include "fv3jedi/Utilities/Traits.h"
 
+#include "soca/GeometryIterator/GeometryIterator.h"
 #include "soca/Traits.h"
 
 #include "saber/oops/instantiateCovarFactory.h"
-#include "ufo/instantiateObsErrorFactory.h"
 #include "ufo/instantiateObsFilterFactory.h"
 #include "ufo/ObsTraits.h"
 
@@ -33,7 +33,6 @@ int runApp(int argc, char** argv, const std::string traits, const std::string ap
   saber::instantiateCovarFactory<Traits>();
 
   // Intantiate ufo factories
-  ufo::instantiateObsErrorFactory();
   ufo::instantiateObsFilterFactory();
 
   // Localization for ensemble DA
@@ -41,7 +40,7 @@ int runApp(int argc, char** argv, const std::string traits, const std::string ap
     if (traits == "fv3jedi") {
       fv3jedi::instantiateObsLocFactory();
     } else if (traits == "soca") {
-      ufo::instantiateObsLocFactory<soca::Traits>();
+      ufo::instantiateObsLocFactory<soca::GeometryIterator>();
     }
   }
 

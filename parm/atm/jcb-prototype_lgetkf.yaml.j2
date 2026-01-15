@@ -1,6 +1,6 @@
 # Use observations for lgetkf
 # ---------------------------
-app_path_observations: {{PARMgfs}}/gdas/jcb-gdas/observations/atmosphere-lgetkf
+app_path_observations: {{PARMgfs}}/gdas/jcb-gdas/observations/atmosphere
 app_path_observation_chronicle: {{PARMgfs}}/gdas/jcb-gdas/observation_chronicle/atmosphere
 
 # Algorithm
@@ -11,9 +11,25 @@ algorithm: local_ensemble_da
 # ------------
 atmosphere_background_ensemble_path: ./bkg/mem%mem%
 
+# Distribution type used in OBS_DIST_LOCALIZATIONS_YAML
+{% set distribution_type = "Halo" %}
+
 # Observation things
 # ------------------
 {% include OBS_LIST_YAML %}
+{% include OBS_DIST_LOCALIZATIONS_YAML %}
+
+# JCB level option to replace obs filters
+# ---------------------------------------
+{% if DOENKFONLY_ATM_GSI_NCDIAG %}
+replace_obs_filters:
+  observations: all_observations
+  override_filters:
+    - filter: PreQC
+      maxvalue: 0
+      action:
+        name: reject
+{% endif %}
 
 # Testing things
 # --------------
