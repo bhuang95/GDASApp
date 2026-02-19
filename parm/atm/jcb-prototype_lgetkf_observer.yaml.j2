@@ -16,11 +16,11 @@ atmosphere_obsdataout_prefix: diag_lobs_
 
 # Distribution type used in OBS_DIST_LOCALIZATIONS_YAML
 {% set distribution_type = "RoundRobin" %}
+{% include 'atm_ens_obs_dist_localizations.yaml.j2' %}
 
 # Observation things
 # ------------------
 {% include OBS_LIST_YAML %}
-{% include OBS_DIST_LOCALIZATIONS_YAML %}
 
 # JCB level option to replace obs filters
 # ---------------------------------------
